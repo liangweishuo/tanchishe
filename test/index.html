@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>贪吃蛇 - 终极版</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <h1>贪吃蛇 - 终极版</h1>
+    
+    <div class="game-info">
+        <div class="score-container">
+            <div>得分: <span id="score">0</span></div>
+            <div>最高分: <span id="highScore">0</span></div>
+        </div>
+        <div class="status-container">
+            <div id="gameMode">模式: 经典</div>
+            <div id="activeEffects">效果: 无</div>
+        </div>
+    </div>
+
+    <div class="game-container">
+        <!-- 开始界面 -->
+        <div id="start-screen" class="game-overlay">
+            <h2>贪吃蛇终极版</h2>
+            
+            <div class="game-settings">
+                <div class="setting-group">
+                    <label>游戏模式:</label>
+                    <select id="modeSelect">
+                        <option value="classic">经典模式</option>
+                        <option value="borderless">无墙模式</option>
+                        <option value="obstacle">障碍模式</option>
+                    </select>
+                </div>
+                
+                <div class="setting-group">
+                    <label>难度:</label>
+                    <select id="difficultySelect">
+                        <option value="easy">简单</option>
+                        <option value="medium" selected>中等</option>
+                        <option value="hard">困难</option>
+                    </select>
+                </div>
+                
+                <div class="setting-group">
+                    <label>地图大小:</label>
+                    <select id="mapSizeSelect">
+                        <option value="small">小 (15x15)</option>
+                        <option value="medium" selected>中 (20x20)</option>
+                        <option value="large">大 (25x25)</option>
+                    </select>
+                </div>
+            </div>
+            
+            <button id="startButton">开始游戏</button>
+            
+            <div class="instructions">
+                <h3>游戏说明</h3>
+                <p>使用 <b>箭头键</b> 或 <b>W/A/S/D</b> 移动</p>
+                <p>按 <b>P</b> 键暂停游戏</p>
+                
+                <div class="legend">
+                    <h4>游戏模式:</h4>
+                    <div class="legend-item"><b>经典模式</b>: 撞墙或撞到自己游戏结束</div>
+                    <div class="legend-item"><b>无墙模式</b>: 穿过边界从另一侧出现</div>
+                    <div class="legend-item"><b>障碍模式</b>: 地图中有随机障碍物</div>
+                    
+                    <h4>食物与道具:</h4>
+                    <div class="legend-item"><span class="food-example food"></span> 普通食物 (+1 分)</div>
+                    <div class="legend-item"><span class="food-example powerup-speed"></span> 加速道具 (5秒)</div>
+                    <div class="legend-item"><span class="food-example powerup-slow"></span> 减速道具 (5秒)</div>
+                    <div class="legend-item"><span class="food-example powerup-double"></span> 双倍得分 (10秒)</div>
+                    <div class="legend-item"><span class="food-example powerup-ghost"></span> 穿墙效果 (5秒)</div>
+                    <div class="legend-item"><span class="food-example powerup-short"></span> 缩短身体 (-3格)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 游戏结束界面 -->
+        <div id="game-over-screen" class="game-overlay" style="display: none;">
+            <h2>游戏结束</h2>
+            <p>你的得分: <span id="finalScore">0</span></p>
+            <p>最高得分: <span id="finalHighScore">0</span></p>
+            <div class="button-group">
+                <button id="restartButton">重新开始</button>
+                <button id="menuButton">返回菜单</button>
+            </div>
+        </div>
+
+        <!-- 暂停界面 -->
+        <div id="pause-screen" class="game-overlay" style="display: none;">
+            <h2>游戏暂停</h2>
+            <button id="resumeButton">继续游戏</button>
+            <button id="quitButton">退出游戏</button>
+        </div>
+
+        <canvas id="gameCanvas" width="400" height="400"></canvas>
+    </div>
+
+    <div class="controls">
+        <button id="pauseButton"><i class="fas fa-pause"></i> 暂停</button>
+        <div class="mobile-controls">
+            <button id="upBtn"><i class="fas fa-arrow-up"></i></button>
+            <div class="horizontal-controls">
+                <button id="leftBtn"><i class="fas fa-arrow-left"></i></button>
+                <button id="rightBtn"><i class="fas fa-arrow-right"></i></button>
+            </div>
+            <button id="downBtn"><i class="fas fa-arrow-down"></i></button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
